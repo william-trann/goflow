@@ -252,12 +252,4 @@ The tests cover:
 - DLQ movement after retry exhaustion
 - idempotent enqueue behavior
 
-## Future Roadmap
-
-- Redis-backed storage adapter
-- lease timeouts and job visibility windows
-- queue partitioning and sharding
-- structured metrics export
-- worker heartbeats and ownership tracking
-- admin API pagination and filtering
-- persistence for idempotency records and DLQ retention policies
+ persistence for idempotency records and DLQ retention policies
