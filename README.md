@@ -1,10 +1,9 @@
-# ForgeQ
 
 > A distributed job queue for Go
 
-ForgeQ is a layered job queue system built to look and feel like real backend infrastructure work. It models the pieces you would expect in a production-oriented queueing platform: durable queue semantics at the domain layer, a pluggable storage boundary, a worker runtime with configurable concurrency, explicit retry policy control, delayed scheduling, DLQ handling, queue statistics, and an HTTP control plane.
+A job queue system for backend services. Handles retries, delayed jobs, DLQs, and basic queue stats, with a worker runtime and simple http control endpoints.
 
-The current backend is in-memory by design. That keeps local development friction low while leaving clean seams for a Redis or database-backed adapter to be added without collapsing the architecture.
+The current backend is in-memory by design for local development friction low while leaving seams for a Redis or database backed adapter to be added without collapsing the architecture.
 
 ## Highlights
 
@@ -200,10 +199,6 @@ pkg/
 - The in-memory adapter models realistic queue behavior instead of flattening everything into a map.
 - The module path is set to `github.com/william-trann/goflow` so the project is ready to publish directly under that repository.
 
-## Why This Project Exists
-
-ForgeQ is designed as a serious portfolio-grade systems project. The goal is to show pragmatic backend engineering: clean package boundaries, credible runtime behavior, well-defined failure handling, transport isolation, and a codebase shape that could naturally evolve into a real open source queueing system.
-
 ## Local Development
 
 Run the combined runtime:
@@ -224,7 +219,7 @@ Run the worker-only entrypoint:
 make worker
 ```
 
-The combined runtime is the end-to-end path for the current in-memory backend. The split API and worker binaries mirror the intended deployment roles once a shared storage backend is introduced.
+The combined runtime is the end-to-end path for the current inmemory backend the split api and worker binaries mirror the intended deployment roles once a shared storage backend is introduced.
 
 Configuration is driven by environment variables:
 
@@ -249,7 +244,5 @@ The tests cover:
 - priority dequeue ordering
 - delayed job promotion
 - exponential retry timing
-- DLQ movement after retry exhaustion
+- dlq movement after retry exhaustion
 - idempotent enqueue behavior
-
- persistence for idempotency records and DLQ retention policies
